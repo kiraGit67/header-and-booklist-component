@@ -1,18 +1,44 @@
 <template>
   <header class="header">
     <section class="header__section">
-      <p class="header__task-name">📚📖👀 Tech Bookstore</p>
+      <p class="header__task-name">{{ headerEmoticons }} {{ headerTitle }}</p>
       <div class="header__bootcamp-info-wrapper">
         <nav class="header__nav">
-          <a href="#" class="header__nav-item header__nav-item--active">Home</a>
+          <a href="#" class="header__nav-item header__nav-item--active">Home</a
+          >&nbsp;&nbsp;
+          <base-button
+            :text="baseButtonText"
+            variant="secondary"
+            :style="baseButtonStyle"
+          />
         </nav>
-        <a href="https://www.coding-bootcamps.eu/" class="header__bootcamp-link"
-          >coding-bootcamps.eu</a
-        >
+        <a :href="headerLink" class="header__bootcamp-link">{{
+          headerLinkText
+        }}</a>
       </div>
     </section>
   </header>
 </template>
+
+<script>
+import BaseButton from "@/components/BaseButton.vue";
+
+export default {
+  data() {
+    return {
+      headerTitle: "CodingBootcamp Europe BookStore",
+      headerEmoticons: "📚 👀 📖 ",
+      headerLink: "https://www.coding-bootcamps.eu/",
+      headerLinkText: "coding-bootcamps.eu",
+      baseButtonStyle: "font-size: 1.1rem",
+      baseButtonText: "Book Store",
+    };
+  },
+  components: {
+    BaseButton,
+  },
+};
+</script>
 
 <style scoped>
 .header {
