@@ -14,7 +14,7 @@
   </header>
 </template>
 
-<style>
+<style scoped>
 .header {
   background-color: var(--primary);
   color: #fff;
