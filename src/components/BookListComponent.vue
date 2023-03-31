@@ -8,27 +8,32 @@
           <th class="table-item__table-head-name">Author</th>
           <th class="table-item__table-head--isbn">ISBN</th>
           <th class="table-item__table-head--isbn">Pages</th>
+          <th class="table-item__table-head--action">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr
+        <book-list-row
           v-for="book in books"
           :key="book.isbn"
+          :title="book.title"
+          :author="book.author"
+          :isbn="book.isbn"
+          :numPages="book.numPages"
           class="table-item__table-row"
-        >
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.isbn }}</td>
-          <td>{{ book.numPages }}</td>
-        </tr>
+        />
       </tbody>
     </table>
   </section>
 </template>
 
 <script>
+import BookListRow from "./BookListRow.vue";
+
 export default {
   name: "BookListComponent",
+  components: {
+    BookListRow,
+  },
   data() {
     return {
       books: [
@@ -70,7 +75,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .table-item__table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -103,8 +108,7 @@ export default {
   color: #ffffff;
   text-align: left;
 }
-.table-item__table th,
-.table-item__table td {
+.table-item__table th {
   padding: 12px 15px;
 }
 .table-item__table tbody tr {
