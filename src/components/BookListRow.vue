@@ -4,7 +4,7 @@
     <td>{{ author }}</td>
     <td>{{ isbn }}</td>
     <td>{{ numPages }}</td>
-    <td><BaseButton text="Add Bookmark" /></td>
+    <td><BaseButton :text="baseButtonText" variant="primary" /></td>
   </tr>
 </template>
 
@@ -20,6 +20,11 @@ export default {
     author: String,
     isbn: String,
     numPages: String,
+  },
+  data() {
+    return {
+      baseButtonText: "Add Bookmark",
+    };
   },
 };
 </script>
