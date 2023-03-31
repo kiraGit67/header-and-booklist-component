@@ -1,6 +1,10 @@
 <template>
   <header-component />
-  <book-list-component />
+  <main>
+    <div id="app" class="inside">
+      <book-list-component />
+    </div>
+  </main>
 </template>
 
 <script>
