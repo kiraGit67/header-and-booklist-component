@@ -1,14 +1,16 @@
 <template>
   <section class="table-item">
-    <h2 class="table-item__hl">All Books</h2>
+    <h2 class="table-item__hl">{{ h2Text }}</h2>
     <table class="table-item__table">
       <thead>
         <tr>
-          <th class="table-item__table-head-name">Name</th>
-          <th class="table-item__table-head-name">Author</th>
-          <th class="table-item__table-head--isbn">ISBN</th>
-          <th class="table-item__table-head--isbn">Pages</th>
-          <th class="table-item__table-head--action">Action</th>
+          <th
+            v-for="tableHeadColumn in tableHeadColumns"
+            :key="tableHeadColumn"
+            class="table-item__table-row"
+          >
+            {{ tableHeadColumn }}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +38,8 @@ export default {
   },
   data() {
     return {
+      h2Text: "Overview about All Books",
+      tableHeadColumns: ["Title", "Author", "ISBN", "Pages", "Actions"],
       books: [
         {
           title: "Practical Rust Web Projects",
