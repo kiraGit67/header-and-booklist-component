@@ -22,6 +22,8 @@
           :isbn="book.isbn"
           :numPages="book.numPages"
           class="table-item__table-row"
+          :isBookmarked="book?.isBookmarked"
+          @bookmark-clicked="handleBookMarkClick"
         />
       </tbody>
     </table>
@@ -75,6 +77,15 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleBookMarkClick(isbn) {
+      const currentBookIndex = this.books.findIndex(
+        (book) => book.isbn === isbn
+      );
+      const currentBook = this.books[currentBookIndex];
+      currentBook.isBookmarked = !currentBook.isBookmarked ? true : false;
+    },
   },
 };
 </script>
