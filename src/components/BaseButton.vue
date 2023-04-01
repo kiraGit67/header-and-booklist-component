@@ -1,9 +1,12 @@
 <template>
-  <button :class="styling">{{ text }}</button>
+  <button :class="styling" v-on:click="$emit('button-clicked')">
+    {{ text }}
+  </button>
 </template>
 
 <script>
 export default {
+  emits: ["button-clicked"],
   props: {
     text: {
       type: String,
@@ -20,6 +23,11 @@ export default {
   computed: {
     styling() {
       return ["btn", `btn--${this.variant}`];
+    },
+  },
+  methods: {
+    emit() {
+      this.$emit("button-clicked");
     },
   },
 };
