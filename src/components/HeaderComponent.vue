@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <section class="header__section">
-      <p class="header__task-name">{{ headerEmoticons }} {{ headerTitle }}</p>
+      <p class="header__task-name">
+        {{ headerEmoticons }} {{ headerTitleToggle }}
+      </p>
       <div class="header__bootcamp-info-wrapper">
         <nav class="header__nav">
           <a href="#" class="header__nav-item header__nav-item--active">Home</a
@@ -10,10 +12,11 @@
             :text="baseButtonText"
             variant="secondary"
             :style="baseButtonStyle"
+            @button-clicked="toggleBookStoreState"
           />
         </nav>
-        <a :href="headerLink" class="header__bootcamp-link">{{
-          headerLinkText
+        <a :href="headerLinkToggle" class="header__bootcamp-link">{{
+          headerLinkTextToggle
         }}</a>
       </div>
     </section>
@@ -26,16 +29,45 @@ import BaseButton from "@/components/BaseButton.vue";
 export default {
   data() {
     return {
-      headerTitle: "CodingBootcamp Europe BookStore",
+      headerTitle: "CodingBootcamps Europe",
       headerEmoticons: "📚 👀 📖 ",
       headerLink: "https://www.coding-bootcamps.eu/",
       headerLinkText: "coding-bootcamps.eu",
       baseButtonStyle: "font-size: 1.1rem",
       baseButtonText: "Book Store",
+      atBookStore: false,
     };
   },
   components: {
     BaseButton,
+  },
+  computed: {
+    headerTitleToggle() {
+      return this.atBookStore
+        ? "CodingBootcamps Europe BookStore"
+        : "CodingBootcamps Europe";
+    },
+    headerLinkTextToggle() {
+      return this.atBookStore
+        ? "coding-bootcamps.eu/BookStore"
+        : "coding-bootcamps.eu";
+    },
+    headerLinkToggle() {
+      return this.atBookStore
+        ? "https://www.coding-bootcamps.eu/book-store"
+        : "https://www.coding-bootcamps.eu";
+    },
+  },
+  methods: {
+    changeHeaderLinkText() {
+      this.headerLinkText = "coding-bootcamps.eu/BookStore";
+      this.headerLink = "https://www.coding-bootcamps.eu/book-store";
+      this.headerTitle = "CodingBootcamps Europe BookStore";
+    },
+    toggleBookStoreState() {
+      //alert(this.atBookStore);
+      this.atBookStore = !this.atBookStore ? true : false;
+    },
   },
 };
 </script>
