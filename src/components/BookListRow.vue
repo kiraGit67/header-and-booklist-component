@@ -4,7 +4,13 @@
     <td>{{ author }}</td>
     <td>{{ isbn }}</td>
     <td>{{ numPages }}</td>
-    <td><BaseButton :text="baseButtonText" variant="primary" /></td>
+    <td>
+      <BaseButton
+        :text="bookMarkedButtonText"
+        variant="primary"
+        @button-clicked="handleBookMarkButtonClick"
+      />
+    </td>
   </tr>
 </template>
 
@@ -19,12 +25,25 @@ export default {
     title: String,
     author: String,
     isbn: String,
-    numPages: String,
+    numPages: Number,
+    isBookmarked: Boolean,
   },
   data() {
     return {
       baseButtonText: "Add Bookmark",
     };
+  },
+  computed: {
+    bookMarkedButtonText() {
+      return this.isBookmarked ? "Remove Bookmark" : "Add Bookmark";
+    },
+  },
+  emits: ["bookmark-clicked"],
+  methods: {
+    handleBookMarkButtonClick() {
+      this.$emit("bookmark-clicked", this.isbn);
+      console.log(this.isbn);
+    },
   },
 };
 </script>
