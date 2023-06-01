@@ -1,6 +1,6 @@
 <template>
   <button :class="styling" v-on:click="$emit('button-clicked')">
-    {{ text }}
+    <slot />
   </button>
 </template>
 
@@ -8,10 +8,12 @@
 export default {
   emits: ["button-clicked"],
   props: {
+    /*
     text: {
       type: String,
       required: true,
     },
+    */
     variant: {
       type: String,
       default: "primary",
@@ -25,11 +27,13 @@ export default {
       return ["btn", `btn--${this.variant}`];
     },
   },
+  /*
   methods: {
     emit() {
       this.$emit("button-clicked");
     },
   },
+  */
 };
 </script>
 
