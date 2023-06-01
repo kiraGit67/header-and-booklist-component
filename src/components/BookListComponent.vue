@@ -24,7 +24,7 @@
           :numPages="book.numPages"
           :isBookmarked="book?.isBookmarked"
         >
-          <template #actionCol="slotProps">
+          <template v-slot:actionCol="slotProps">
             <BaseButton
               :variant="secondary"
               @button-clicked="handleBookMarkClick(slotProps.isbn)"
