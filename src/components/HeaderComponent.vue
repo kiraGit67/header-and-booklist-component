@@ -9,11 +9,12 @@
           <a href="#" class="header__nav-item header__nav-item--active">Home</a
           >&nbsp;&nbsp;
           <base-button
-            :text="baseButtonText"
             variant="secondary"
             :style="baseButtonStyle"
             @button-clicked="toggleBookStoreState"
-          />
+          >
+            📚 {{ buttonTextToggle }}
+          </base-button>
         </nav>
         <a :href="headerLinkToggle" class="header__bootcamp-link">{{
           headerLinkTextToggle
@@ -56,6 +57,9 @@ export default {
       return this.atBookStore
         ? "https://www.coding-bootcamps.eu/book-store"
         : "https://www.coding-bootcamps.eu";
+    },
+    buttonTextToggle() {
+      return this.atBookStore ? "Bootcamp" : "Book Store";
     },
   },
   methods: {
