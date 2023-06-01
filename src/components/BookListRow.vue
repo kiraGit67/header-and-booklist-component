@@ -5,22 +5,34 @@
     <td>{{ isbn }}</td>
     <td>{{ numPages }}</td>
     <td>
+      <slot
+        name="actionCol"
+        :title="title"
+        :author="author"
+        :isbn="isbn"
+        :numPages="numPages"
+        :isBookmarked="isBookmarked"
+      />
+      <!--
       <BaseButton
         :text="bookMarkedButtonText"
         variant="primary"
         @button-clicked="handleBookMarkButtonClick"
       />
+      -->
     </td>
   </tr>
 </template>
 
 <script>
-import BaseButton from "@/components/BaseButton.vue";
+//import BaseButton from "@/components/BaseButton.vue";
 
 export default {
+  /*
   components: {
-    BaseButton,
+    //BaseButton,
   },
+  */
   props: {
     title: String,
     author: String,
@@ -28,6 +40,7 @@ export default {
     numPages: Number,
     isBookmarked: Boolean,
   },
+  /*
   data() {
     return {
       baseButtonText: "Add Bookmark",
@@ -45,6 +58,7 @@ export default {
       console.log(this.isbn);
     },
   },
+  */
 };
 </script>
 
